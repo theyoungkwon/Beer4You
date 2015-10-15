@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="appcontest.practice.beerforyou4"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="ANDROID.PERMISSION.INTERNET"/>
+    <uses-permission android:name="ANDROID.PERMISSION.CAMERA"/>
+
+    <application>
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="appcontest.practice.beerforyou4.TabVoice"
+            android:label = "@string/title_section1">
+        </activity>
+        <activity
+            android:name="appcontest.practice.beerforyou4.TabImage"
+            android:label = "@string/title_section2">
+        </activity>
+        <activity
+            android:name="appcontest.practice.beerforyou4.TabText"
+            android:label = "@string/title_section3">
+        </activity>
+        <activity
+            android:name="appcontest.practice.beerforyou4.TabRecommender"
+            android:label = "@string/title_section4">
+        </activity>
+        <activity
+            android:name="appcontest.practice.beerforyou4.InfoActivity"
+            android:label = "@string/title_info_activity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+    </application>
+
+</manifest>
