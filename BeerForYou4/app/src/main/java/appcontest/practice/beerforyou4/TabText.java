@@ -3,8 +3,10 @@ package appcontest.practice.beerforyou4;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ public class TabText extends Fragment {
     Context mContext;
     OnWordSelectedListener mCallback;
     private ListView list;
+    private View view;
 
     public interface OnWordSelectedListener {
         public void onWordSelected(int position);
@@ -32,8 +35,10 @@ public class TabText extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_tab_text, null);
+        Log.d("Tab Text", "On Create View ");
+        view = inflater.inflate(R.layout.activity_tab_text, null);
         Toast.makeText(getActivity().getBaseContext(), "텍스트 검색 화면이 생성되었습니다", Toast.LENGTH_SHORT).show();
+
         CustomList adapter = new CustomList(TabText.this);
         list=(ListView) view.findViewById(R.id.TabTextList);
         list.setAdapter(adapter);
@@ -43,21 +48,46 @@ public class TabText extends Fragment {
                                     int position, long id) {
                 // we need to use getActivity() method to use Toast function in Fragment
                 // by using getActivity() we can get Activity associated with this Fragment
-                Toast.makeText(getActivity().getBaseContext(), DataForTest.titles[+position], Toast.LENGTH_SHORT).show();
-                // TODO
-                // we need to implement the Fragment Dialog to show information of beer to users
+                Log.i("position of Items", String.valueOf(position));
                 mCallback.onWordSelected(position);
                 list.setItemChecked(position, true);
-
             }
         });
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("Tab Text", "On Resume ");
+        if( MainActivity.INFO_SIGNAL == 1){
+            CustomList adapter = new CustomList(TabText.this);
+            list=(ListView) view.findViewById(R.id.TabTextList);
+            list.setAdapter(adapter);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    // we need to use getActivity() method to use Toast function in Fragment
+                    // by using getActivity() we can get Activity associated with this Fragment
+                    Log.i("position of Items", String.valueOf(position));
+                    mCallback.onWordSelected(position);
+                    list.setItemChecked(position, true);
+                }
+            });
+            MainActivity.INFO_SIGNAL = 0;
+        }
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.d("Tab Text", " On Pause ");
+    }
+
     public class CustomList extends ArrayAdapter<String> {
         private final TabText context;
         public CustomList(TabText context ) {
-            super(getActivity(), R.layout.activity_tab_text_list_item, DataForTest.titles);
+            super(getActivity(), R.layout.activity_tab_text_list_item, DataForTest.name_eng);
             this.context = context;
         }
         @Override
@@ -65,16 +95,23 @@ public class TabText extends Fragment {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View rowView= inflater.inflate(R.layout.activity_tab_text_list_item, null, true);
             ImageView imageView = (ImageView) rowView.findViewById(R.id.image);
-            TextView title = (TextView) rowView.findViewById(R.id.title);
-            TextView rating = (TextView) rowView.findViewById(R.id.rating);
-            TextView genre = (TextView) rowView.findViewById(R.id.genre);
-            TextView year = (TextView) rowView.findViewById(R.id.releaseYear);
+            TextView name_eng = (TextView) rowView.findViewById(R.id.name_eng);
+            TextView name_kor = (TextView) rowView.findViewById(R.id.name_kor);
+            TextView nation = (TextView) rowView.findViewById(R.id.nation);
+            TextView alcohol_degree = (TextView) rowView.findViewById(R.id.alcohol_degree);
+            TextView user_rating = (TextView) rowView.findViewById(R.id.userRating);
 
-            title.setText(DataForTest.titles[position]);
+            // getting information of user rating on Create View
+            SharedPreferences userRating = getActivity().getSharedPreferences(MainActivity.PREFS_USER, 0);
+            String rating = userRating.getString(Integer.toString(position) , "");
+
+            name_eng.setText(DataForTest.name_eng[position]);
             imageView.setImageResource(DataForTest.images[position]);
-            rating.setText("9.0"+position);
-            genre.setText("DRAMA");
-            year.setText(1930+position+"");
+            name_kor.setText(DataForTest.name_kor[position]);
+            nation.setText(DataForTest.nation[position]);
+            alcohol_degree.setText("도수 : "+ DataForTest.alcohol_degree[position]);
+            user_rating.setText("평점 : " + rating );
+
             return rowView;
         }
     }

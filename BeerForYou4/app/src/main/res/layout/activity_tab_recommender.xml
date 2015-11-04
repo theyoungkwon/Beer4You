@@ -7,6 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg_gradient"
+    android:orientation="vertical"
     tools:context=".FragmentRecommender">
 
     <TextView android:text="추천 시스템"
@@ -14,27 +16,47 @@
         android:textSize="36dp"
         android:id="@+id/recommenderTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="암거나 드셔"
-        android:textSize="24dp"
-        android:id="@+id/recommenderRandomBtn"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="15dp"
+        android:textColor="@color/white"
+        android:textStyle="normal"
         />
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="추천 포 유"
-        android:textSize="24dp"
-        android:id="@+id/recommenderBtn"
-        android:layout_marginRight="15dp"
-        android:layout_alignTop="@+id/recommenderRandomBtn"
-        android:layout_toEndOf="@+id/recommenderRandomBtn"
-        android:layout_toRightOf="@+id/recommenderRandomBtn" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommenderRandomBtn"
+            android:textSize="30dp"
+            android:id="@+id/recommenderRandomBtn"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_gradient"
+            android:onClick="onClickRecommenderRandomBtn"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommenderBtn"
+            android:textSize="30dp"
+            android:id="@+id/recommenderBtn"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/white"
+            android:textStyle="normal"
+            android:background="@drawable/bg_gradient"
+            android:onClick="onClickRecommenderBtn"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

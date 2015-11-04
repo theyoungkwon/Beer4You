@@ -4,7 +4,11 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -19,10 +23,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends FragmentActivity implements
-        ActionBar.TabListener, TabText.OnWordSelectedListener {
+        ActionBar.TabListener, TabText.OnWordSelectedListener, TabRecommender.OnBtnSelectedListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -35,7 +42,10 @@ public class MainActivity extends FragmentActivity implements
     SectionsPagerAdapter mSectionsPagerAdapter;
     private final String TAB_SELECTED = "tab_selected";
     private int mTabSelected;
-    private static final int GET_STRING = 1;
+    static final int GET_STRING = 1;
+    public static int INFO_SIGNAL = 0;
+
+    public static final String PREFS_USER = "UserRatings";
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -45,7 +55,7 @@ public class MainActivity extends FragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d("MainActivity", "On Create ");
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -85,6 +95,19 @@ public class MainActivity extends FragmentActivity implements
             mTabSelected = savedInstanceState.getInt(TAB_SELECTED);
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("MainActivity", "On Resume ");
+        // getting information of user rating when MainActivity resume
+
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.d("MainActivity", " On Pause ");
     }
 
     @Override
@@ -141,28 +164,69 @@ public class MainActivity extends FragmentActivity implements
 
     // initiate InfoActivity class by clicking item in TabText
     public void onWordSelected(int position) {
-
-        //Bundle args = getIntent().getExtras();
-        Log.i("WordSelected", " BEFORE   args.putInt ");
-
-        //args.putInt(InfoActivity.ARG_POSITION, position);
-        Log.i("WordSelected", " AFTER   args.putInt ");
+        Log.i("Main Activity", " Method : onWordSelected ");
         Intent intent = new Intent(MainActivity.this, InfoActivity.class);
         intent.putExtra("ARG_POSITION", String.valueOf(position));
         startActivityForResult(intent, GET_STRING);
     }
 
-    // getting some information from InfoActivity class
+    public void onBtnSelected(int position) {
+        Log.i("Main Activity", " Method : onBtnSelected ");
+        Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+        intent.putExtra("ARG_POSITION", String.valueOf(position));
+        startActivityForResult(intent, GET_STRING);
+    }
+
+    // REQ_CODE_SPEECH_INPUT : getting text input from voice recognition api
+    // GET_STRING : getting some information from InfoActivity class
+    // CODE_SELECT_IMAGE : select image in external storage device
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == GET_STRING){
-            if(resultCode == RESULT_OK){
-                String input_text = data.getStringExtra("INPUT_TEXT");
-                if( input_text != null) {
-                    Log.i("RATING SCORE", input_text);
-                    Toast.makeText(getBaseContext(), input_text, Toast.LENGTH_SHORT).show();
+        switch (requestCode) {
+            case TabVoice.REQ_CODE_SPEECH_INPUT:
+                if (resultCode == RESULT_OK && null != data) {
+
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    //txtSpeechInput.setText(result.get(0));
+                    Log.i("Main Activity", ": Voice data : "+ result.get(0));
+                    // implement initiating the InfoActivity part by using the textSpeechInput
+                    String text = result.get(0);
+                    // search the matching text with DB and
+                    // initiate the InfoActivity by using Intent
+                    int position = DataForTest.findItemPositionByText(text);
+                    Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                    intent.putExtra("ARG_POSITION", String.valueOf(position));
+                    startActivityForResult(intent, GET_STRING);
                 }
-            }
+                break;
+            case TabImage.CODE_SELECT_IMAGE:
+                Bitmap bitmap = null;
+                if(resultCode == RESULT_OK && null != data){
+                    Uri image = data.getData();
+                    try{
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), image);
+                    } catch( FileNotFoundException e){
+                        e.printStackTrace();
+                    } catch(IOException e){
+                        e.printStackTrace();
+                    }
+                    //TODO
+                    // sent image data to TapImage and display it.
+                    //ImageView imgView = (ImageView) findViewById(R.id.imageview);
+                    //imgView.setImageVitmap(bitmap);
+                }
+                break;
+            case GET_STRING:
+                if(resultCode == RESULT_OK && null != data){
+                    String input_text = data.getStringExtra("INPUT_TEXT");
+                    if( input_text != null) {
+                        Log.i("RATING SCORE", input_text);
+                        INFO_SIGNAL = 1;
+                        Toast.makeText(getBaseContext(), input_text, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
         }
     }
 

@@ -17,4 +17,13 @@
     <string name="tab2_text">HomePage : https://whdghks913.tistory.com</string>
     <string name="example">Example Source</string>
 
+    <string name="speech_prompt">Say something</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to speak</string>
+
+    <string name="tap_on_camera">Tap on to take a pic</string>
+
+    <string name="recommenderRandomBtn">랜덤 선택</string>
+    <string name="recommenderBtn">비어 포유</string>
+
 </resources>
