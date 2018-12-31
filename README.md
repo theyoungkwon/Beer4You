@@ -19,5 +19,6 @@ Implemented an Android app which presents information on beers to users when the
 
 #### Beer4You Slides
 ![Beer4You Slides](slides.pdf "Beer4You Slides")
+
 ![Beer4You Logo](/app/src/main/res/drawable/logo.png "Beer4You Logo")
 
