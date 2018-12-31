@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Beer4you</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="string_btn_fragment_voice">음성인식검색</string>
+    <string name="string_btn_fragment_image">이미지검색</string>
+    <string name="string_btn_fragment_text">텍스트검색</string>
+    <string name="string_btn_fragment_recommender">맥주추천기능</string>
+
+    <string name="title_section1">인식기능</string>
+    <string name="title_section2">이미지</string>
+    <string name="title_section3">추천</string>
+    <string name="title_section4">카테고리</string>
+
+    <string name="title_info_activity">맥주 정보</string>
+
+    <string name="title_activity_importedbeer">수입 맥주 탑5</string>
+    <string name="title_activity_tailoredbeer">맞춤 추천 맥주 탑5</string>
+
+
+    <string name="title_activity_country">제조국</string>
+    <string name="country_title_section1">유럽</string>
+    <string name="country_title_section2">동유럽</string>
+    <string name="country_title_section3">아시아</string>
+    <string name="country_title_section4">미주</string>
+
+    <string name="title_activity_degree">도수</string>
+    <string name="degree_title_section1">높은순</string>
+    <string name="degree_title_section2">낮은순</string>
+
+    <string name="title_activity_taste">맛</string>
+    <string name="taste_title_section1">라거</string>
+    <string name="taste_title_section2">밀맥주</string>
+    <string name="taste_title_section3">필스너</string>
+    <string name="taste_title_section4">흑맥주</string>
+    <string name="taste_title_section5">에일</string>
+
+    <!-- TabRecognize activity -->
+    <string name="speech_prompt">Say something</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to speak</string>
+    <string name="title_activity_recognizeactivity">텍스트 인식</string>
+    <string name="title_activity_selectimage">이미지 선택</string>
+
+    <!-- recognize activity -->
+    <string name="subscription_key">17d7f99d5cb54921b8d6db1911426be0</string>
+    <string name="add_subscription_key_tip_title">Subscription Key is Needed</string>
+    <string name="add_subscription_key_tip">Please put your subscription key to source file \"app/res/values/strings.xml\" to enable Face API calls.</string>
+
+    <string name="tap_on_camera">Tap on to take a pic</string>
+
+    <!-- Select image activity -->
+    <string name="select_an_image">Select an Image</string>
+    <string name="take_photo">Take a Photo</string>
+    <string name="select_image_in_album">From Gallery</string>
+
+    <!-- TabRecommender activity -->
+    <string name="recommenderRandomBtn">랜덤 선택</string>
+    <string name="recommenderBtn">비어 포유</string>
+
+</resources>

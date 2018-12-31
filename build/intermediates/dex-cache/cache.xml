@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\AndroidStudioProject\FirstApplication\BeerForYou5\app\build\intermediates\exploded-aar\com.microsoft.projectoxford\vision\0.4.91\jars\libs\commons-io-2.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="C:\AndroidStudioProject\FirstApplication\BeerForYou5\app\build\intermediates\pre-dexed\debug\commons-io-2.4-a7fedc176cb942cea777961f966541ea9b4db043.jar" />
+    </item>
+    <item
+        jar="C:\AndroidStudioProject\FirstApplication\BeerForYou5\app\build\intermediates\exploded-aar\com.microsoft.projectoxford\vision\0.4.91\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="645086b5dc1860a57942d990038f1e1bbaa42612">
+        <dex dex="C:\AndroidStudioProject\FirstApplication\BeerForYou5\app\build\intermediates\pre-dexed\debug\classes-0fd3dd82db9fc33d8996359ad586bd699130e963.jar" />
+    </item>
+    <item
+        jar="C:\Users\jiuser\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\AndroidStudioProject\FirstApplication\BeerForYou5\app\build\intermediates\pre-dexed\debug\gson-2.3.1-6a019278b4b0fd9bca6e4ef68f5f5c22c5c1e040.jar" />
+    </item>
+
+</items>

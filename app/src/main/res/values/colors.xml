@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="bg_gradient_start">#31244e</color>
+    <color name="bg_gradient_end">#6b394c</color>
+
+    <color name="grey">#cccccc</color>
+    <color name="dark_grey">#646464</color>
+
+    <color name="sunshine_light_blue">#ff64c2f4</color>
+
+    <color name="pressed_styled">#CC669900</color>
+    <color name="dark_green">#CC669900</color>
+    <color name="sky_dark_green">#A2BF63</color>
+    <color name="sky_green">#58AC49</color>
+    <color name="green">#00ff00</color>
+    <color name="red">#ff0000</color>
+    <color name="sky_red">#F05B4A</color>
+    <color name="blue">#0000ff</color>
+    <color name="light_blue">#00ffff</color>
+    <color name="sky_blue">#93cddd</color>
+    <color name="sky_sky_blue">#B7DEE8</color>
+    <color name="sky_dark_blue">#31859C</color>
+    <color name="light_purple">#ff00ff</color>
+    <color name="yellow">#ffff00</color>
+    <color name="dark_yellow">#fb3</color>
+    <color name="soft_yellow">#ffcc00</color>
+    <color name="sky_yellow">#F2AB03</color>
+    <color name="dark_purple">#31244e</color>
+    <color name="soft_purple">#6b394c</color>
+    <color name="sky__purple">#8B51AB</color>
+
+    <!-- Floating Action Button -->
+    <color name="fab_color_1">#ff5252</color>
+    <color name="fab_color_1_muted">#ff8080</color>
+    <color name="fab_color_2">#9c27b0</color>
+    <color name="fab_color_2_muted">#a56ab0</color>
+
+</resources>
